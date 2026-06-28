@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<settings>
-    <category id="general" label="General">
+<settings version="1">
+    <category label="General">
         <setting
             id="manifest_url"
             type="string"
