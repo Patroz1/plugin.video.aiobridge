@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+    <category id="general" label="General">
+        <setting
+            id="manifest_url"
+            type="string"
+            label="AIOStreams Manifest URL"
+            default=""
+        />
+    </category>
+</settings>
