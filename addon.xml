@@ -16,10 +16,13 @@
     </extension>
 
     <extension point="xbmc.addon.metadata">
-        <summary lang="en_GB">AIOStreams Bridge for Kodi</summary>
+
+        <summary lang="en_GB">
+            AIOStreams Bridge for Kodi
+        </summary>
 
         <description lang="en_GB">
-Bridge between Kodi and AIOStreams manifests.
+            Bridge between Kodi and AIOStreams manifests.
         </description>
 
         <platform>all</platform>
@@ -27,7 +30,10 @@ Bridge between Kodi and AIOStreams manifests.
         <license>MIT</license>
 
         <website></website>
-        <source>https://github.com/Patroz1/plugin.video.aiobridge</source>
+
+        <source>
+            https://github.com/Patroz1/plugin.video.aiobridge
+        </source>
 
     </extension>
 

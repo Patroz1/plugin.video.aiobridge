@@ -1,11 +1,9 @@
-from urllib.parse import urlencode
+from urllib.parse import urlencode, parse_qs
 
-import xbmc
-import xbmcgui
 import xbmcplugin
+import xbmcgui
 
-from lib.logger import Logger
-from lib.settings import Settings
+from lib.controller import Controller
 
 
 class Router:
@@ -30,32 +28,35 @@ class Router:
 
     def run(self):
 
-        xbmc.log("[AIOBridge] Router.run() started", xbmc.LOGINFO)
+        params = parse_qs(self.argv[2][1:])
+        action = params.get("action", [None])[0]
 
-        try:
-            xbmc.log("[AIOBridge] Creating Settings()", xbmc.LOGINFO)
-            settings = Settings()
+        controller = Controller()
 
-            xbmc.log("[AIOBridge] Reading manifest_url", xbmc.LOGINFO)
-            manifest = settings.manifest_url
+        if action == "movies":
+            controller.movies()
+            xbmcplugin.endOfDirectory(self.handle)
+            return
 
-            xbmc.log(f"[AIOBridge] Manifest: {manifest}", xbmc.LOGINFO)
+        elif action == "series":
+            controller.series()
+            xbmcplugin.endOfDirectory(self.handle)
+            return
 
-            Logger.info("Settings loaded correctly")
+        elif action == "settings":
+            controller.settings()
+            xbmcplugin.endOfDirectory(self.handle)
+            return
 
-        except Exception:
-            import traceback
+        elif action == "about":
+            controller.about()
+            xbmcplugin.endOfDirectory(self.handle)
+            return
 
-            xbmc.log(
-                "[AIOBridge] Exception:\n" + traceback.format_exc(),
-                xbmc.LOGERROR,
-            )
-
+        # Menu principale
         self.add_folder("Film", "movies")
         self.add_folder("Serie TV", "series")
         self.add_folder("Settings", "settings")
         self.add_folder("About", "about")
 
         xbmcplugin.endOfDirectory(self.handle)
-
-        xbmc.log("[AIOBridge] Router.run() finished", xbmc.LOGINFO)
